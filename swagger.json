@@ -5,10 +5,9 @@
     "description": "API for managing patients, doctors, appointments, and more.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "healthcare-api-system.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
