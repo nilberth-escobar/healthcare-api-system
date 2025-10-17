@@ -5,9 +5,10 @@
     "description": "API for managing patients, doctors, appointments, and more.",
     "version": "1.0.0"
   },
-  "host": "healthcare-api-system.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
@@ -69,6 +70,9 @@
                   "example": "any"
                 },
                 "contactInfo": {
+                  "example": "any"
+                },
+                "address": {
                   "example": "any"
                 },
                 "medicalHistory": {
@@ -136,6 +140,9 @@
                   "example": "any"
                 },
                 "contactInfo": {
+                  "example": "any"
+                },
+                "address": {
                   "example": "any"
                 },
                 "medicalHistory": {
@@ -215,6 +222,9 @@
                 },
                 "contactInfo": {
                   "example": "any"
+                },
+                "availability": {
+                  "example": "any"
                 }
               }
             }
@@ -281,6 +291,9 @@
                   "example": "any"
                 },
                 "contactInfo": {
+                  "example": "any"
+                },
+                "availability": {
                   "example": "any"
                 }
               }

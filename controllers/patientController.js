@@ -23,6 +23,7 @@ const createPatient = async (req, res) => {
         name: req.body.name,
         dateOfBirth: req.body.dateOfBirth,
         contactInfo: req.body.contactInfo,
+        address: req.body.address, // Added address
         medicalHistory: req.body.medicalHistory
     };
     const response = await mongodb.getDb().db().collection('patients').insertOne(patient);
@@ -39,6 +40,7 @@ const updatePatient = async (req, res) => {
         name: req.body.name,
         dateOfBirth: req.body.dateOfBirth,
         contactInfo: req.body.contactInfo,
+        address: req.body.address, // Added address
         medicalHistory: req.body.medicalHistory
     };
     const response = await mongodb.getDb().db().collection('patients').replaceOne({ _id: userId }, patient);

@@ -4,7 +4,11 @@ const patientValidationRules = () => {
     return [
         body('name').isString().notEmpty().withMessage('Name is required.'),
         body('dateOfBirth').isISO8601().toDate().withMessage('Valid Date of Birth is required.'),
-        body('contactInfo').isString().notEmpty().withMessage('Contact info is required.'),
+        // Validate contactInfo as an object with phone and email properties
+        body('contactInfo').isObject().withMessage('contactInfo must be an object.'),
+        body('contactInfo.phone').isString().notEmpty().withMessage('Phone is required in contactInfo.'),
+        body('contactInfo.email').isEmail().withMessage('A valid email is required in contactInfo.'),
+        body('address').isString().notEmpty().withMessage('Address is required.'),
         body('medicalHistory').isArray().withMessage('Medical history must be an array.')
     ];
 };
@@ -14,7 +18,11 @@ const doctorValidationRules = () => {
         body('name').isString().notEmpty().withMessage('Name is required.'),
         body('specialty').isString().notEmpty().withMessage('Specialty is required.'),
         body('licenseNumber').isString().notEmpty().withMessage('License number is required.'),
-        body('contactInfo').isString().notEmpty().withMessage('Contact info is required.')
+        // Validate contactInfo as an object with phone and email properties
+        body('contactInfo').isObject().withMessage('contactInfo must be an object.'),
+        body('contactInfo.phone').isString().notEmpty().withMessage('Phone is required in contactInfo.'),
+        body('contactInfo.email').isEmail().withMessage('A valid email is required in contactInfo.'),
+        body('availability').isArray().withMessage('Availability must be an array.')
     ];
 };
 
@@ -54,7 +62,8 @@ const validate = (req, res, next) => {
         return next();
     }
     const extractedErrors = [];
-    errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
+    // Use err.path instead of err.param for express-validator v7+
+    errors.array().map(err => extractedErrors.push({ [err.path]: err.msg }));
 
     return res.status(422).json({
         errors: extractedErrors,

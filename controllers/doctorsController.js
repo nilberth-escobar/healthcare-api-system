@@ -23,7 +23,8 @@ const createDoctor = async (req, res) => {
         name: req.body.name,
         specialty: req.body.specialty,
         licenseNumber: req.body.licenseNumber,
-        contactInfo: req.body.contactInfo
+        contactInfo: req.body.contactInfo,
+        availability: req.body.availability // Added availability
     };
     const response = await mongodb.getDb().db().collection('doctors').insertOne(doctor);
     if (response.acknowledged) {
@@ -39,7 +40,8 @@ const updateDoctor = async (req, res) => {
         name: req.body.name,
         specialty: req.body.specialty,
         licenseNumber: req.body.licenseNumber,
-        contactInfo: req.body.contactInfo
+        contactInfo: req.body.contactInfo,
+        availability: req.body.availability // Added availability
     };
     const response = await mongodb.getDb().db().collection('doctors').replaceOne({ _id: userId }, doctor);
     if (response.modifiedCount > 0) {
